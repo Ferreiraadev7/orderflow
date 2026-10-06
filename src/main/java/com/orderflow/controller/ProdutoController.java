@@ -70,6 +70,12 @@ public class ProdutoController {
         Produto produto = produtoService.atualizar(id, dados);
         return ResponseEntity.ok(new DadosDetalhamentoProduto(produto));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> desativar(
+            @PathVariable Long id){
+        produtoService.desativar(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }

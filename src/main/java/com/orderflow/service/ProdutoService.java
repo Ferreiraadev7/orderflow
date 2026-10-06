@@ -27,11 +27,12 @@ public class ProdutoService {
     }
 
     public List<Produto> listar(){
-        return repository.findAll();
+
+        return repository.findByAtivoTrue();
     }
 
     public Produto buscarPorId(Long id){
-        return repository.findById(id)
+        return repository.findByIdAndAtivoTrue(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "Produto não encontrado"
@@ -40,6 +41,13 @@ public class ProdutoService {
     public Produto atualizar(Long id, DadosAtualizacaoProduto dados){
         Produto produto = buscarPorId(id);
         produto.atualizar(dados);
+        return repository.save(produto);
+    }
+    public Produto desativar(Long id){
+
+        Produto produto = buscarPorId(id);
+
+        produto.desativar();
         return repository.save(produto);
     }
 }

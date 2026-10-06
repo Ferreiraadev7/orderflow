@@ -66,6 +66,10 @@ public class Produto {
             this.estoque = dados.estoque();
         }
     }
+
+    public void desativar(){
+        this.ativo = false;
+    }
 }
 
 
