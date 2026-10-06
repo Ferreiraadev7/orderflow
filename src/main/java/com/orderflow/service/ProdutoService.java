@@ -1,5 +1,6 @@
 package com.orderflow.service;
 
+import com.orderflow.domain.dto.DadosAtualizacaoProduto;
 import com.orderflow.domain.dto.DadosCadastroProduto;
 import com.orderflow.domain.entity.Produto;
 import com.orderflow.repository.ProdutoRepository;
@@ -35,5 +36,10 @@ public class ProdutoService {
                         HttpStatus.NOT_FOUND,
                         "Produto não encontrado"
                 ));
+    }
+    public Produto atualizar(Long id, DadosAtualizacaoProduto dados){
+        Produto produto = buscarPorId(id);
+        produto.atualizar(dados);
+        return repository.save(produto);
     }
 }

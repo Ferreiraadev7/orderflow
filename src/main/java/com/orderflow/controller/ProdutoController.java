@@ -1,5 +1,6 @@
 package com.orderflow.controller;
 
+import com.orderflow.domain.dto.DadosAtualizacaoProduto;
 import com.orderflow.domain.dto.DadosCadastroProduto;
 import com.orderflow.domain.dto.DadosDetalhamentoProduto;
 import com.orderflow.domain.dto.DadosListagemProduto;
@@ -63,6 +64,13 @@ public class ProdutoController {
 
         return ResponseEntity.ok(detalhamento);
     }
+    @PatchMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoProduto> atualizar(
+            @PathVariable Long id, @Valid @RequestBody DadosAtualizacaoProduto dados){
+        Produto produto = produtoService.atualizar(id, dados);
+        return ResponseEntity.ok(new DadosDetalhamentoProduto(produto));
+    }
+
 
 }
 

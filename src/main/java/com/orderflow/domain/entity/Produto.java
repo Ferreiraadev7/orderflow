@@ -1,5 +1,6 @@
 package com.orderflow.domain.entity;
 
+import com.orderflow.domain.dto.DadosAtualizacaoProduto;
 import com.orderflow.domain.dto.DadosCadastroProduto;
 import jakarta.persistence.*;
 
@@ -51,6 +52,20 @@ public class Produto {
         return descricao;
     }
 
+    public void atualizar(DadosAtualizacaoProduto dados){
+        if (dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        if (dados.descricao() != null){
+            this.descricao = dados.descricao();
+        }
+        if (dados.preco() != null){
+            this.preco = dados.preco();
+        }
+        if (dados.estoque() != null){
+            this.estoque = dados.estoque();
+        }
+    }
 }
 
 
